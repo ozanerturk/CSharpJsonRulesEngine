@@ -57,7 +57,7 @@ Rule is a json object it contains two main properties. `conditions` and `event`
                 "value": 18
             },
             {
-                "fact":"total-transaction-amoun",//Dynamic Fact
+                "fact":"total-transaction-amoun",//DynamicFact
                 "params":{
                     "startDate":"2020-12-12T10:00:00",
                     "endDate":"2021-12-12T10:00:00",
@@ -74,7 +74,7 @@ Rule is a json object it contains two main properties. `conditions` and `event`
                     },
                     {
                         "fact": "amount",
-                        "operator": "in-range",//Custom Operator
+                        "operator": "in-range",//CustomOperator
                         "value": [50,300]
                     }
                 ]
