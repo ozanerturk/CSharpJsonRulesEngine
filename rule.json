@@ -1,0 +1,44 @@
+{
+    "conditions": {
+        "all": [
+            {
+                "fact": "categories",
+                "path": "$.[1]",
+                "operator": "equal",
+                "value": "b"
+            },
+            {
+                "fact": "total-transaction-amount",
+                "params": {
+                    "startDate": "2013-12-12T12:12:12",
+                    "endDate": "2012-12-12T12:12:12",
+                },
+                "operator": "greaterThan",
+                "value": 10
+            },
+            {
+                "fact": "age",
+                "operator": "in-range",
+                "value":[3,20]
+            },
+            {
+                "any": [
+                    {
+                        "fact": "age",
+                        "operator": "equal",
+                        "value": 19
+                    },
+                    {
+                        "fact": "year",
+                        "operator": "greaterThan",
+                        "value": 1993
+                    }
+                ]
+            }
+        ]
+    },
+    "event": {
+        "type": "discount",
+        "amount": 100
+    }
+}
