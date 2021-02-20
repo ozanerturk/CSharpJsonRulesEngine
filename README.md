@@ -47,7 +47,7 @@ foreach (var @event in events)
 ## Rules
 Rule is a json object it contains two main properties. `conditions` and `event`
 ```json 
-//If age is above 18 and ('line-item-names' contain 'banana' or 'amount' is above 150)
+//If age is above 18 and total transaction amount is less than 1000 and ('line-item-names' list contains 'banana' or 'amount' is in range (50,300])
 {
     "conditions": {
         "all": [
@@ -57,7 +57,7 @@ Rule is a json object it contains two main properties. `conditions` and `event`
                 "value": 18
             },
             {
-                "fact":"total-transaction-amoun",//DynamicFact
+                "fact":"total-transaction-amount",//DynamicFact
                 "params":{
                     "startDate":"2020-12-12T10:00:00",
                     "endDate":"2021-12-12T10:00:00",
@@ -88,7 +88,7 @@ Rule is a json object it contains two main properties. `conditions` and `event`
 }
 ```
 ## Operators
-Engine has couples of default operators:
+Engine has couple of default operators:
 - `equal` *makes string comparison* 
 - `greaterThan` *float comparison* 
 - `greaterThanInclusive` *float comparison* 
@@ -98,7 +98,7 @@ Engine has couples of default operators:
 - `contain` *string array comparison* 
 
 ### Custom Operators
-You could also define your custom operator like following.Declare a type inherited from `Operator<L,R>`, Engine will resolve it in initiation. 
+You could also define your custom operators like following. Declare a type inherited from `Operator<L,R>`, engine will resolve it automatically. 
     
 ```CSharp
 public class InRange : Operator<float, List<float>>
@@ -119,7 +119,7 @@ public class InRange : Operator<float, List<float>>
 ```
 
 ## DynamicFact
-If your incomingJson unable to contain certain information. You can inherit a class from `DynamicFact` to achive this. declare it anywhere you want. engine will resolve it for you. 
+If your `incomingJson` unable to contain certain information. You can inherit a class from `DynamicFact` to achive this. declare it anywhere you want. engine will resolve it for you. 
 
 Example `total-transcation-amount`:
 ```CSharp
@@ -143,7 +143,7 @@ Example `total-transcation-amount`:
 
 ## RuleEvent
 Engine should know the type of an RuleEvent in order to cast it to an instane. 
-Just inherit a class from `RuleEvent` engine will resolve types from assembly. 
+Just inherit a class from `RuleEvent`, engine will resolve types from assembly. 
 ```CSharp
  public class DiscountEvent : RuleEvent
     {
