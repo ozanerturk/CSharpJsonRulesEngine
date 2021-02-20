@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using Newtonsoft.Json.Linq;
-// ...
+using CSharpRulesEngine;
 
-
-namespace CSharpRulesEngine_ozi
+namespace RuleEngine.Test
 {
-
-
     public class InRange : Operator<float, List<float>>
     {
         public override string Name => "in-range";
@@ -18,7 +13,7 @@ namespace CSharpRulesEngine_ozi
         public override bool Evaluate(float left, List<float> right) // range(1,3]
         {
             float upperBound = right.Last();
-            float lowerBound = right.Last();
+            float lowerBound = right.First();
             if (left > lowerBound && left <= upperBound)
             {
                 return true;
@@ -46,25 +41,28 @@ namespace CSharpRulesEngine_ozi
     public class DiscountEvent : RuleEvent
     {
         public override string Name => "discount";
+        public float amount;
     }
     class Program
     {
 
         static void Main(string[] args)
         {
-            string text = File.ReadAllText("C:\\WORK\\github\\CSharpRulesEngine_ozi\\rule.json");
-            string incoming = File.ReadAllText("C:\\WORK\\github\\CSharpRulesEngine_ozi\\incoming.json");
+            string rule = File.ReadAllText("ExampleJson/rule.json");
+            string incoming = File.ReadAllText("ExampleJson/incoming.json");
 
-
-            JObject doc = JObject.Parse(text);
-            JObject incomingObj = JObject.Parse(incoming);
             var e = new Engine();
+            e.AddRule(rule);
 
-            e.AddRule(doc);
-
-            Console.WriteLine("Result : {0}", e.Execute(incomingObj));
-
-
+            var events = e.Execute(incoming);
+            foreach (var @event in events)
+            {
+                if (@event is DiscountEvent)
+                {
+                    var discountEvent = (DiscountEvent)@event;
+                    Console.WriteLine("DiscountEvent with amount : {0}", discountEvent.amount);
+                }
+            }
         }
     }
 }

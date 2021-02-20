@@ -1,10 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using Newtonsoft.Json.Linq;
 
-namespace CSharpRulesEngine_ozi
+namespace CSharpRulesEngine
 {
     public abstract class Operator
     {

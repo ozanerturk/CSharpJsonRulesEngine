@@ -1,13 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using Microsoft.VisualBasic.CompilerServices;
 using Newtonsoft.Json.Linq;
 
-namespace CSharpRulesEngine_ozi
+namespace CSharpRulesEngine
 {
-
     public class Engine
     {
         public Dictionary<string, DynamicFact> DynamicFacts;
@@ -72,7 +69,6 @@ namespace CSharpRulesEngine_ozi
                         }
                     });
         }
-
         public void AddOperator(Operator @operator)
         {
             Operators.Add(@operator.Name, @operator);
@@ -81,20 +77,22 @@ namespace CSharpRulesEngine_ozi
         {
             this.Rules.Remove(r);
         }
-        public Rule AddRule(JObject jObject)
+        public Rule AddRule(string ruleJson)
         {
+            JObject jObject = JObject.Parse(ruleJson);
             Rule r = RuleParser.ParseRule(this, jObject);
             this.Rules.Add(r);
             return r;
         }
 
-        internal void AddDynamicFact(DynamicFact dynamicFact)
+        public void AddDynamicFact(DynamicFact dynamicFact)
         {
             this.DynamicFacts.Add(dynamicFact.Name, dynamicFact);
         }
 
-        public List<RuleEvent> Execute(JObject jObject)
+        public List<RuleEvent> Execute(string incoming)
         {
+            JObject jObject = JObject.Parse(incoming);
             ExecutionContext context = ExecutionContext.GetContext(this, jObject);
             return context.Execute();
         }

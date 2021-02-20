@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 
-namespace CSharpRulesEngine_ozi
+namespace CSharpRulesEngine
 {
-
-
-
     public class FactCondition : Condition
     {
         public string Fact { get; }

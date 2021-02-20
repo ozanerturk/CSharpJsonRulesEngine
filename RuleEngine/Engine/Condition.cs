@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace CSharpRulesEngine_ozi
+namespace CSharpRulesEngine
 {
     public abstract class Condition
     {
@@ -14,7 +14,7 @@ namespace CSharpRulesEngine_ozi
             this.subConditions.Add(condition);
         }
 
-        public abstract bool Evaluate(ExecutionContext contex);
+        public abstract  bool Evaluate(ExecutionContext contex);
 
     }
 }

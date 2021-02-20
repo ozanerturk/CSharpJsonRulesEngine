@@ -1,10 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json.Linq;
-using static CSharpRulesEngine_ozi.ExecutionContext;
 
-namespace CSharpRulesEngine_ozi
+namespace CSharpRulesEngine
 {
     public class BooleanCondition : Condition
     {

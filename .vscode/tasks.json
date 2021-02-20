@@ -8,7 +8,7 @@
             "args": [
                 "run",
                 "-p",
-                "${workspaceFolder}/RuleEngine"
+                "${workspaceFolder}/RuleEngine.Example"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -18,7 +18,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/RuleEngine/RuleEngine.csproj",
+                "${workspaceFolder}",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],

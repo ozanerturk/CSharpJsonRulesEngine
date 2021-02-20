@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 
-namespace CSharpRulesEngine_ozi
+namespace CSharpRulesEngine
 {
     public class ExecutionContext
     {
@@ -78,8 +78,6 @@ namespace CSharpRulesEngine_ozi
                 this.FactValueCache[long_hash] = factValueToken;
                 return factValueToken;
             }
-
-
         }
 
         public void Dispose()

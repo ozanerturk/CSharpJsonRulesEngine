@@ -9,9 +9,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/RuleEngine/bin/Debug/netcoreapp3.1/RuleEngine.dll",
+            "program": "${workspaceFolder}/RuleEngine.Example/bin/Debug/netcoreapp3.1/RuleEngine.Example.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/RuleEngine",
+            "cwd": "${workspaceFolder}/RuleEngine.Example",
             "console": "internalConsole",
             "stopAtEntry": false
         },

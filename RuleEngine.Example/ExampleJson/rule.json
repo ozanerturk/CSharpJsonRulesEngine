@@ -1,0 +1,41 @@
+{
+    "conditions": {
+        "all": [
+            {
+                "fact": "age",
+                "operator": "greaterThan",
+                "value": 18
+            },
+            {
+                "fact": "total-transaction-amount",
+                "params": {
+                    "startDate": "2020-12-12T10:00:00",
+                    "endDate": "2021-12-12T10:00:00"
+                },
+                "operator": "lessThan",
+                "value": 1000
+            },
+            {
+                "any": [
+                    {
+                        "fact": "line-item-names",
+                        "operator": "contain",
+                        "value": "banana"
+                    },
+                    {
+                        "fact": "amount",
+                        "operator": "in-range",
+                        "value": [
+                            50,
+                            300
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "event": {
+        "type": "discount",
+        "amount": 100
+    }
+}

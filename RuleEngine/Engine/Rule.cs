@@ -1,4 +1,4 @@
-namespace CSharpRulesEngine_ozi
+namespace CSharpRulesEngine
 {
     public class Rule
     {
@@ -9,7 +9,6 @@ namespace CSharpRulesEngine_ozi
             this.rootCondition = rootCondition;
             this.@event = @event;
         }
-
         public bool Evaluate(ExecutionContext contex)
         {
             return rootCondition.Evaluate(contex);

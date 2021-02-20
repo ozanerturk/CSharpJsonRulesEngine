@@ -1,6 +1,6 @@
 using Newtonsoft.Json.Linq;
 
-namespace CSharpRulesEngine_ozi
+namespace CSharpRulesEngine
 {
     public abstract class DynamicFact
     {

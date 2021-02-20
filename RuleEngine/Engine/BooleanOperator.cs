@@ -1,4 +1,4 @@
-namespace CSharpRulesEngine_ozi
+namespace CSharpRulesEngine
 {
     public enum BooleanOperator
     {

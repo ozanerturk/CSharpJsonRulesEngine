@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Newtonsoft.Json.Linq;
 
-namespace CSharpRulesEngine_ozi
+namespace CSharpRulesEngine
 {
     public static class RuleParser
     {
@@ -83,6 +84,8 @@ namespace CSharpRulesEngine_ozi
             }
             return new BooleanCondition(@operator, conditions);
         }
+        static MethodInfo jTokenToObjectGenericMethod = typeof(JToken).GetMethod("ToObject");
+
         public static Rule ParseRule(Engine engine, JObject jsonRule)
         {
             JToken rootConditionToken;
@@ -122,11 +125,12 @@ namespace CSharpRulesEngine_ozi
                 throw new Exception($"unknwon event:{type}");
             }
             var @event = engine.Events[type];
+            var ruleEvent = (RuleEvent)eventToken.ToObject(@event.GetType());
 
             JArray j_subConditions = (JArray)(((JProperty)rootBooleanCondition).Value);
             var rootCondition = ParseBooleanCondition(engine, BooleanOperator.ALL, j_subConditions);
 
-            return new Rule(rootCondition, @event);
+            return new Rule(rootCondition, ruleEvent);
         }
     }
 }

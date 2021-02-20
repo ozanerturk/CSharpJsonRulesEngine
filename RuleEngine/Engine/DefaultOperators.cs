@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace CSharpRulesEngine_ozi
+namespace CSharpRulesEngine
 {
     public class EqualsOperator : Operator<string, string>
     {
@@ -20,6 +20,30 @@ namespace CSharpRulesEngine_ozi
             return left > right;
         }
     }
+    public class LessThan : Operator<float, float>
+    {
+        public override string Name => "lessThan";
+        public override bool Evaluate(float left, float right)
+        {
+            return left < right;
+        }
+    }
+    public class LessThanInclusive : Operator<float, float>
+    {
+        public override string Name => "lessThan";
+        public override bool Evaluate(float left, float right)
+        {
+            return left <= right;
+        }
+    }
+    public class GreaterThanInclusive : Operator<float, float>
+    {
+        public override string Name => "greaterThanInclusive";
+        public override bool Evaluate(float left, float right)
+        {
+            return left >= right;
+        }
+    }
     public class In : Operator<string, List<string>>
     {
         public override string Name => "in";
@@ -30,7 +54,7 @@ namespace CSharpRulesEngine_ozi
     }
     public class Contains : Operator<List<string>, string>
     {
-        public override string Name => "contains";
+        public override string Name => "contain";
         public override bool Evaluate(List<string> left, string right)
         {
             return left.Contains(right);
