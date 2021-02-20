@@ -142,7 +142,7 @@ Example `total-transcation-amount`:
 ```
 
 ## RuleEvent
-Engine should now the type of Events in order to cast it to an instane before execution. 
+Engine should know the type of an RuleEvent in order to cast it to an instane. 
 Just inherit a class from `RuleEvent` engine will resolve types from assembly. 
 ```CSharp
  public class DiscountEvent : RuleEvent
