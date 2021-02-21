@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <PackageId>JsonRuleEngine</PackageId>
-    <Version>0.0.2</Version>
+    <PackageId>JsonRulesEngine</PackageId>
+    <Version>0.0.1</Version>
     <Authors>ozanerturk</Authors>
 
     <TargetFramework>netcoreapp3.1</TargetFramework>
