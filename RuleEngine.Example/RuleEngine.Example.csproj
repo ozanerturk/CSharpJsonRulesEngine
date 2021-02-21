@@ -2,13 +2,14 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RuleEngine\RuleEngine.csproj" />
-    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>      
   </ItemGroup>
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFrameworks>netcoreapp3.1;</TargetFrameworks>
     <RuntimeIdentifiers>win-x64;linux-x64;osx-x64</RuntimeIdentifiers>
+    <GenerateRuntimeConfigurationFiles >true</GenerateRuntimeConfigurationFiles>      
+
   </PropertyGroup>
 
 </Project>
