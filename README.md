@@ -6,14 +6,13 @@ This project inspired originally from  [json-rules-engine](https://github.com/Ca
 Even there are many similarities, This is not a complete PORT of 'json-rules-engine'
 Still has lots of works to do.
 
-## TODOS
-- Fact priorities
-- Rule priorities
-- Unit Tests
-- Documentation
-- Nuget Package
-- CD/CI
-- Async Execution and Event Handles
+
+## Installation
+Install using the [JsonRuleEngine NuGet package](https://www.nuget.org/packages/JsonRuleEngine/):
+
+```
+dotnet add package JsonRuleEngine --version 0.0.1
+```
 
 
 ## Basic Usage
@@ -155,5 +154,13 @@ Just inherit a class from `RuleEvent`, engine will resolve types from assembly.
     }
 ```
 
-
+## TODOS
+- Fact priorities
+- Rule priorities
+- Unit Tests
+- Documentation
+- Nuget Package
+- CD/CI
+- Async Execution and Event Handles
+- 
 
