@@ -28,11 +28,13 @@ var incomingJson= `{
     "amount":300
 }`
 
-JObject incomingFact = //Read Json Object
+string ruleJson = //Read Json Object
 
 var engine = new Engine();
+
 engine.AddRule(ruleJson);// checkout Rules section
-var events = e.Execute(ruleJson);
+var events = e.Execute(incomingJson);
+
 foreach (var @event in events)
     {
         if (@event is DiscountEvent)
