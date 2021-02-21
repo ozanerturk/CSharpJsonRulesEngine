@@ -5,14 +5,13 @@ namespace CSharpRulesEngine
 {
     public class BooleanCondition : Condition
     {
-
         BooleanOperator @operator = BooleanOperator.ALL;
-        public BooleanCondition(BooleanOperator @operator, List<Condition> conditions)
+        public BooleanCondition(BooleanOperator @operator, IList<ICondition> conditions)
         {
             this.@operator = @operator;
             this.subConditions = conditions;
         }
-        public override bool Evaluate(ExecutionContext context)
+        public override bool Evaluate(IExecutionContext context)
         {
             if (this.@operator == BooleanOperator.ALL)
             {

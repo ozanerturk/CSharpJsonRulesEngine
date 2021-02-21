@@ -30,7 +30,7 @@ namespace CSharpRulesEngine
     }
     public class LessThanInclusive : Operator<float, float>
     {
-        public override string Name => "lessThan";
+        public override string Name => "lessThanInclusive";
         public override bool Evaluate(float left, float right)
         {
             return left <= right;

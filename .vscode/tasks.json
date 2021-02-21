@@ -12,7 +12,7 @@
             ],
             "problemMatcher": "$msCompile"
         },
-        {
+       {
             "label": "build",
             "command": "dotnet",
             "type": "process",

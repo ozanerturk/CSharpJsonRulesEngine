@@ -3,7 +3,8 @@ using Newtonsoft.Json.Linq;
 
 namespace CSharpRulesEngine
 {
-    public abstract class Operator
+
+    public abstract class Operator : IOperator
     {
         public abstract string Name { get; }
         public abstract Type Left { get; }

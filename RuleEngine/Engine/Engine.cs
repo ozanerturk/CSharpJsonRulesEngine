@@ -5,18 +5,20 @@ using Newtonsoft.Json.Linq;
 
 namespace CSharpRulesEngine
 {
-    public class Engine
+
+    public class Engine : IEngine
     {
-        public Dictionary<string, DynamicFact> DynamicFacts;
-        public Dictionary<string, Operator> Operators;
-        public Dictionary<string, RuleEvent> Events;
-        public List<Rule> Rules;
+        public Dictionary<string, IDynamicFact> DynamicFacts { get; private set; }
+        public Dictionary<string, IOperator> Operators { get; private set; }
+        public Dictionary<string, IRuleEvent> Events { get; private set; }
+        public List<IRule> Rules { get; private set; }
+        public static object lockObjc = new object();
         public Engine()
         {
-            DynamicFacts = new Dictionary<string, DynamicFact>();
-            Operators = new Dictionary<string, Operator>();
-            Rules = new List<Rule>();
-            Events = new Dictionary<string, RuleEvent>();
+            DynamicFacts = new Dictionary<string, IDynamicFact>();
+            Operators = new Dictionary<string, IOperator>();
+            Rules = new List<IRule>();
+            Events = new Dictionary<string, IRuleEvent>();
             ResolveOperators();
             ResolveEvents();
             ResolveDynamicFacts();
@@ -30,7 +32,7 @@ namespace CSharpRulesEngine
                     .ToList()
                     .ForEach(type =>
                     {
-                        DynamicFact instance = (DynamicFact)Activator.CreateInstance(type);
+                        var instance = (DynamicFact)Activator.CreateInstance(type);
                         if (!DynamicFacts.ContainsKey(instance.Name))
                         {
                             DynamicFacts.Add(instance.Name, instance);
@@ -46,7 +48,7 @@ namespace CSharpRulesEngine
                     .ToList()
                     .ForEach(type =>
                     {
-                        Operator instance = (Operator)Activator.CreateInstance(type);
+                        var instance = (Operator)Activator.CreateInstance(type);
                         if (!Operators.ContainsKey(instance.Name))
                         {
                             Operators.Add(instance.Name, instance);
@@ -62,38 +64,55 @@ namespace CSharpRulesEngine
                     .ToList()
                     .ForEach(type =>
                     {
-                        RuleEvent instance = (RuleEvent)Activator.CreateInstance(type);
+                        var instance = (RuleEvent)Activator.CreateInstance(type);
                         if (!Events.ContainsKey(instance.Name))
                         {
                             Events.Add(instance.Name, instance);
                         }
                     });
         }
-        public void AddOperator(Operator @operator)
+        public void AddOperator(IOperator @operator)
         {
             Operators.Add(@operator.Name, @operator);
         }
-        private void RemoveRule(Rule r)
+        public IRule GetRule(Guid id)
         {
-            this.Rules.Remove(r);
+            return this.Rules.FirstOrDefault(x => x.Id.Equals(id));
         }
-        public Rule AddRule(string ruleJson)
+
+        public bool RemoveRule(IRule r)
         {
-            JObject jObject = JObject.Parse(ruleJson);
-            Rule r = RuleParser.ParseRule(this, jObject);
-            this.Rules.Add(r);
+            lock (lockObjc)
+            {
+                return this.Rules.Remove(r);
+            }
+        }
+        public IRule AddRule(string ruleJson)
+        {
+            var jObject = JObject.Parse(ruleJson);
+            var r = RuleParser.ParseRule(this, jObject);
+            lock (lockObjc)
+            {
+                this.Rules.Add(r);
+            }
             return r;
         }
 
-        public void AddDynamicFact(DynamicFact dynamicFact)
+        public static ExecutionContext GetContext(IEngine engine, JObject value)
         {
-            this.DynamicFacts.Add(dynamicFact.Name, dynamicFact);
-        }
+            lock (lockObjc)
+            {
+                var ruleCopy = new List<IRule>();
+                ruleCopy.AddRange(engine.Rules);
+                var valueClone = value.DeepClone();
+                return new ExecutionContext(engine.DynamicFacts, ruleCopy, value);
+            }
 
-        public List<RuleEvent> Execute(string incoming)
+        }
+        public List<IRuleEvent> Execute(string incoming)
         {
-            JObject jObject = JObject.Parse(incoming);
-            ExecutionContext context = ExecutionContext.GetContext(this, jObject);
+            var jObject = JObject.Parse(incoming);
+            var context = GetContext(this, jObject);
             return context.Execute();
         }
     }

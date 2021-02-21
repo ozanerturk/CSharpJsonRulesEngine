@@ -5,12 +5,12 @@ namespace CSharpRulesEngine
     public class FactCondition : Condition
     {
         public string Fact { get; }
-        public Operator @operator { get; }
+        public IOperator @operator { get; }
         public JToken Value { get; }
         public dynamic @Params { get; }
         public string Path { get; }
 
-        public FactCondition(string fact, Operator @operator, JToken value, dynamic @params, string path) 
+        public FactCondition(string fact, IOperator @operator, JToken value, dynamic @params, string path) 
         {
             Fact = fact;
             this.@operator = @operator;
@@ -19,7 +19,7 @@ namespace CSharpRulesEngine
             @Params = @params;
         }
 
-        public override bool Evaluate(ExecutionContext context)
+        public override bool Evaluate(IExecutionContext context)
         {
             JToken value = context.FactValue(this.Fact, this.Params, this.Path);
             if (value == null)

@@ -2,19 +2,20 @@ using System.Collections.Generic;
 
 namespace CSharpRulesEngine
 {
-    public abstract class Condition
+
+    public abstract class Condition : ICondition
     {
-        public IList<Condition> subConditions { get; set; }
+        public IList<ICondition> subConditions { get; set; }
         public Condition()
         {
-            subConditions = new List<Condition>();
+            subConditions = new List<ICondition>();
         }
-        public void AddCondition(Condition condition)
+        public void AddCondition(ICondition condition)
         {
             this.subConditions.Add(condition);
         }
 
-        public abstract  bool Evaluate(ExecutionContext contex);
+        public abstract bool Evaluate(IExecutionContext contex);
 
     }
 }

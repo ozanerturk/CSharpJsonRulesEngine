@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using CSharpRulesEngine;
 
 namespace RuleEngine.Test
@@ -54,15 +56,25 @@ namespace RuleEngine.Test
             var e = new Engine();
             e.AddRule(rule);
 
-            var events = e.Execute(incoming);
-            foreach (var @event in events)
+            Parallel.For(1, 100, (i) =>
             {
-                if (@event is DiscountEvent)
+                e.AddRule(rule);
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                var events = e.Execute(incoming);
+                sw.Stop();
+                Console.WriteLine("Execution time : {0} ms", sw.ElapsedMilliseconds);
+                foreach (var @event in events)
                 {
-                    var discountEvent = (DiscountEvent)@event;
-                    Console.WriteLine("DiscountEvent with amount : {0}", discountEvent.amount);
+                    if (@event is DiscountEvent)
+                    {
+                        var discountEvent = (DiscountEvent)@event;
+                        Console.WriteLine("DiscountEvent with amount : {0}", discountEvent.amount);
+                    }
                 }
-            }
+            });
+            Console.WriteLine("Total rule:{0}", e.Rules.Count);
+
         }
     }
 }

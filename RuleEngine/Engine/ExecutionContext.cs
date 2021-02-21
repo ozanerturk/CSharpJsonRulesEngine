@@ -4,24 +4,24 @@ using Newtonsoft.Json.Linq;
 
 namespace CSharpRulesEngine
 {
-    public class ExecutionContext
+
+    public class ExecutionContext : IExecutionContext
     {
-        private Engine engine;
-        private List<Rule> rules;
+        private List<IRule> rules;
         private JObject value;
-        public Dictionary<string, JToken> FactValueCache { get; set; }
-        public List<RuleEvent> @events { get; set; }
-        public bool isRunning = false;
-        protected ExecutionContext(Engine engine, List<Rule> rules, JObject value)
+        public Dictionary<string, JToken> FactValueCache { get; private set; }
+        public Dictionary<string, IDynamicFact> DynamicFacts { get; private set; }
+        public List<IRuleEvent> @events { get; private set; }
+        private bool isRunning = false;
+        public ExecutionContext(Dictionary<string, IDynamicFact> dynamicFacts, List<IRule> rules, JObject value)
         {
-            this.engine = engine;
+            this.DynamicFacts = dynamicFacts;
             this.rules = rules;
             this.value = value;
             FactValueCache = new Dictionary<string, JToken>();
-            @events = new List<RuleEvent>();
-
+            @events = new List<IRuleEvent>();
         }
-        public List<RuleEvent> Execute()
+        public List<IRuleEvent> Execute()
         {
             if (isRunning)
             {
@@ -37,10 +37,7 @@ namespace CSharpRulesEngine
             }
             return @events;
         }
-        public static ExecutionContext GetContext(Engine engine, JObject value)
-        {
-            return new ExecutionContext(engine, engine.Rules, value);
-        }
+
         public JToken FactValue(string fact, dynamic @params = null, string path = "")
         {
             var comparer = new JTokenEqualityComparer();
@@ -56,9 +53,9 @@ namespace CSharpRulesEngine
             {
                 JToken factValueToken = "";
 
-                if (this.engine.DynamicFacts.ContainsKey(fact))
+                if (this.DynamicFacts.ContainsKey(fact))
                 {
-                    factValueToken = this.engine.DynamicFacts[fact].CalculateJToken(this, @params);
+                    factValueToken = this.DynamicFacts[fact].CalculateJToken(this, @params);
                 }
                 else
                 {
@@ -80,9 +77,5 @@ namespace CSharpRulesEngine
             }
         }
 
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

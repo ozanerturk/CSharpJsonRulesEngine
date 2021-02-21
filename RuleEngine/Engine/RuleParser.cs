@@ -10,7 +10,7 @@ namespace CSharpRulesEngine
     {
         private static BooleanCondition ParseBooleanCondition(Engine engine, BooleanOperator @operator, JToken jsonSubConditions)
         {
-            List<Condition> conditions = new List<Condition>();
+            var conditions = new List<ICondition>();
             foreach (JToken token in jsonSubConditions.Children())
             {
                 if (token.Type != JTokenType.Object)
