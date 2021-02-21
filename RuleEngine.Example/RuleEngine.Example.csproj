@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RuleEngine\RuleEngine.csproj" />
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>      
   </ItemGroup>
 
   <PropertyGroup>
