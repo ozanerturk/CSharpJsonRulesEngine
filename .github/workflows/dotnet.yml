@@ -35,7 +35,7 @@ jobs:
       - name: Setup .NET Core ${{ matrix.dotnet.sdk }} SDK
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: ${{ matrix.dotnet.sdk }}
+         dotnet-version: '3.1'
 
       - name: Restore
         run: dotnet restore
