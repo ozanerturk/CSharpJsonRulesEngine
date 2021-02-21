@@ -1,4 +1,6 @@
 # CSharp - Json Rules Engine
+[![.NET Core CI/CD](https://github.com/ozanerturk/CSharpJsonRulesEngine/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/ozanerturk/CSharpJsonRulesEngine/actions/workflows/dotnet.yml)
+[![codecov](https://codecov.io/gh/ozanerturk/CSharpJsonRulesEngine/branch/main/graph/badge.svg?token=XvcMUSDeUV)](https://codecov.io/gh/ozanerturk/CSharpJsonRulesEngine)
 
 This project inspired originally from  [json-rules-engine](https://github.com/CacheControl/json-rules-engine) project. 
 Even there are many similarities, This is not a complete PORT of 'json-rules-engine'
@@ -41,6 +43,7 @@ foreach (var @event in events)
             var discountEvent = (DiscountEvent)@event;
             Console.WriteLine("DiscountEvent with amount : {0}", discountEvent.amount);
         }
+        
     }
 ``` 
 
