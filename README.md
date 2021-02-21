@@ -28,11 +28,10 @@ var incomingJson= `{
     "amount":300
 }`
 
-string ruleJson = //Read Json Object
-
 var engine = new Engine();
 
 engine.AddRule(ruleJson);// checkout Rules section
+
 var events = e.Execute(incomingJson);
 
 foreach (var @event in events)
