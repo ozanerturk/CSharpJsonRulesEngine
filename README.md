@@ -1,5 +1,5 @@
 # CSharp - Json Rules Engine
-[![.NET Core CI/CD](https://github.com/ozanerturk/CSharpJsonRulesEngine/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/ozanerturk/CSharpJsonRulesEngine/actions/workflows/dotnet.yml)
+[![.NET Core CI/CD](https://github.com/ozanerturk/CSharpJsonRulesEngine/actions/workflows/dotnet.yml/badge.svg)](https://github.com/ozanerturk/CSharpJsonRulesEngine/actions/workflows/dotnet.yml)
 [![codecov](https://codecov.io/gh/ozanerturk/CSharpJsonRulesEngine/branch/main/graph/badge.svg?token=XvcMUSDeUV)](https://codecov.io/gh/ozanerturk/CSharpJsonRulesEngine)
 
 This project inspired originally from  [json-rules-engine](https://github.com/CacheControl/json-rules-engine) project. 
