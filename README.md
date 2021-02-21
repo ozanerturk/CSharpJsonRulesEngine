@@ -4,7 +4,7 @@
 
 This project inspired originally from  [json-rules-engine](https://github.com/CacheControl/json-rules-engine) project. 
 Even there are many similarities, This is not a complete PORT of 'json-rules-engine'
-Still has lots of works to do.
+Still has lots of works to do. Feel free to make contribitions.
 
 
 ## Installation
