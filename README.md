@@ -8,10 +8,10 @@ Still has lots of works to do.
 
 
 ## Installation
-Install using the [JsonRuleEngine NuGet package](https://www.nuget.org/packages/JsonRuleEngine/):
+Install using the [JsonRulesEngine NuGet package](https://www.nuget.org/packages/JsonRulesEngine/):
 
 ```
-dotnet add package JsonRuleEngine --version 0.0.1
+dotnet add package JsonRulesEngine --version 0.0.1
 ```
 
 
