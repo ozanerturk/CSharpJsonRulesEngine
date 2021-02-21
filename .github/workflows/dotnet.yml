@@ -14,7 +14,11 @@ on:
       - "**"
       - "!**.md"
 
-
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  DOTNET_NOLOGO: true
+  NUGET_XMLDOC_MODE: skip
+  NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
 
 jobs:
   test:
@@ -22,16 +26,16 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os:  [ubuntu-latest]
+        os:  [ubuntu-latest, windows-latest, macos-latest]
         # see also https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/releases-index.json
         dotnet: [ { sdk: "3.1", framework: "netcoreapp3.1" }]
        
     steps:
       - uses: actions/checkout@v2
       - name: Setup .NET Core ${{ matrix.dotnet.sdk }} SDK
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v1.7.2
         with:
-         dotnet-version: '3.1'
+          dotnet-version: ${{ matrix.dotnet.sdk }}
 
       - name: Restore
         run: dotnet restore
@@ -45,3 +49,4 @@ jobs:
         with:
           file: "!**/.nuget/packages/**/*.*"
           flags: ${{ runner.os }},${{ matrix.dotnet.framework }}
+ 
