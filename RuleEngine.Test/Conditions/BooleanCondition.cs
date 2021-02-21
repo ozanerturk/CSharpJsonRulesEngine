@@ -67,9 +67,7 @@ namespace RuleEngine.Test
             booleanCondition.AddCondition(conditionToAdd);
 
             //Assert
-            bool isInitialConditionSizeEqualsToInsertedListSize =  initialConditionsCount == initialContidionList.Count;
-            bool isIncreasedByOne =  booleanCondition.subConditions.Count == initialContidionList.Count + 1;
-            Assert.True(isInitialConditionSizeEqualsToInsertedListSize, $"should true");
+            bool isIncreasedByOne =  booleanCondition.subConditions.Count == initialConditionsCount + 1;
             Assert.True(isIncreasedByOne, $"should true");
         }
     }

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace CSharpRulesEngine
 {
-    public class EqualsOperator : Operator<string, string>
+    public class Equals : Operator<string, string>
     {
         public override string Name => "equal";
 
