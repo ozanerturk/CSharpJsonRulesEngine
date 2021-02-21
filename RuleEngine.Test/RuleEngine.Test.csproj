@@ -16,5 +16,5 @@
   <ItemGroup>
     <ProjectReference Include="..\RuleEngine\RuleEngine.csproj" />
   </ItemGroup>
-
+ 
 </Project>
