@@ -36,9 +36,9 @@ jobs:
       - name: Restore
         run: dotnet restore
       - name: Build
-        run: dotnet build -f ${{ matrix.dotnet.framework }}
+        run: dotnet build 
       - name: Test
-        run: dotnet test -f ${{ matrix.dotnet.framework }} --settings coverlet.runsettings
+        run: dotnet test  --settings coverlet.runsettings
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
