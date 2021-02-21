@@ -17,8 +17,6 @@ dotnet add package JsonRulesEngine --version 0.0.1
 
 ## Basic Usage
 
-
-var events = e.Execute(incomingObj);
 ``` Csharp
 
 var incomingJson= `{
