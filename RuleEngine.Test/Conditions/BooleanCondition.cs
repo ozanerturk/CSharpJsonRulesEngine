@@ -1,18 +1,12 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using CSharpRulesEngine;
 using Moq;
-using Newtonsoft.Json.Linq;
 using Xunit;
 
 namespace RuleEngine.Test
 {
     public class BooleanCondition_Should
     {
-
-
         [Theory()]
         [InlineData(BooleanOperator.ANY, true)]
         [InlineData(BooleanOperator.ANY, true, false)]
@@ -59,7 +53,7 @@ namespace RuleEngine.Test
             //Arrange
             var contex = Mock.Of<IExecutionContext>();
             var initialContidionList = new List<ICondition>() { Mock.Of<ICondition>(), Mock.Of<ICondition>() };
-            var conditionToAdd= Mock.Of<ICondition>();
+            var conditionToAdd = Mock.Of<ICondition>();
 
             //Action
             var booleanCondition = new BooleanCondition(booleanOpeartor, initialContidionList);
@@ -67,7 +61,7 @@ namespace RuleEngine.Test
             booleanCondition.AddCondition(conditionToAdd);
 
             //Assert
-            bool isIncreasedByOne =  booleanCondition.subConditions.Count == initialConditionsCount + 1;
+            bool isIncreasedByOne = booleanCondition.subConditions.Count == initialConditionsCount + 1;
             Assert.True(isIncreasedByOne, $"should true");
         }
     }

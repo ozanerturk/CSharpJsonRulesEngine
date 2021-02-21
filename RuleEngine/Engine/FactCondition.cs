@@ -10,7 +10,7 @@ namespace CSharpRulesEngine
         public dynamic @Params { get; }
         public string Path { get; }
 
-        public FactCondition(string fact, IOperator @operator, JToken value, dynamic @params, string path) 
+        public FactCondition(string fact, IOperator @operator, JToken value, dynamic @params, string path)
         {
             Fact = fact;
             this.@operator = @operator;
