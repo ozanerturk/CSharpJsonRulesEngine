@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" Publish="false" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" Publish="false" />
   </ItemGroup>
 
 </Project>
